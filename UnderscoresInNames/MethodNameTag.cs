@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.Text.Tagging;
+﻿using System.Linq;
+using Microsoft.VisualStudio.Text.Tagging;
 
 namespace UnderscoresInNames
 {
@@ -6,9 +7,14 @@ namespace UnderscoresInNames
 	{
 		internal MethodNameTag(string name)
 		{
-			this.Name = name;
+			Name = name;
 		}
 
 		internal readonly string Name;
+
+		internal static string UnCamelCase(string name)
+		{
+			return string.Concat(name.Zip((name + " ").Skip(1), (c, n) => new { c, n }).SelectMany(x => char.IsLower(x.c) && char.IsUpper(x.n) ? new[] { x.c, '_' } : new[] { x.c }));
+		}
 	}
 }

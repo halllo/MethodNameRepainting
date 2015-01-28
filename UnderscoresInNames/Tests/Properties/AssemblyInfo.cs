@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UnderscoresInNames")]
+[assembly: AssemblyTitle("Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Manuel Naujoks")]
-[assembly: AssemblyProduct("UnderscoresInNames")]
-[assembly: AssemblyCopyright("Copyright © Manuel Naujoks")]
+[assembly: AssemblyCompany("STPAG")]
+[assembly: AssemblyProduct("Tests")]
+[assembly: AssemblyCopyright("Copyright © STPAG 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,8 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-[assembly: InternalsVisibleTo("Tests")]
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("b3689c55-8e52-43eb-a527-02276f1fb6df")]
 
 // Version information for an assembly consists of the following four values:
 //

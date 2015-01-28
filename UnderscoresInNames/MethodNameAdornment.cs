@@ -24,8 +24,13 @@ namespace UnderscoresInNames
 
 		private void Initialize()
 		{
-			Background = Brushes.Yellow;
+			Background = Brushes.LightGoldenrodYellow;
 			Height = 12;
+			Children.Add(new Border
+			{
+				BorderThickness = new Thickness(0, 0, 0, 1),
+				BorderBrush = Brushes.HotPink,
+			});
 			Children.Add(new TextBlock
 			{
 				Margin = new Thickness(0, -3, 0, 0),
@@ -37,8 +42,12 @@ namespace UnderscoresInNames
 
 		internal void Update(MethodNameTag tag)
 		{
-			((TextBlock)Children[0]).Text = tag.Name;
-			Width = tag.Name.Length * 7.2;
+			var newName = MethodNameTag.UnCamelCase(tag.Name);
+
+			((TextBlock)Children[1]).Text = newName;
+			Width = newName.Length * 7.0;
 		}
+
+
 	}
 }

@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.Text;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+using Microsoft.VisualStudio.Text;
 using UnderscoresInNames.Support;
 
 namespace UnderscoresInNames
