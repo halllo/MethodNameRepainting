@@ -186,9 +186,16 @@ namespace UnderscoresInNames.Support
 			// Mark which adornments fall inside the requested spans with Keep=false
 			// so that they can be removed from the cache if they no longer correspond to data tags.
 			HashSet<SnapshotSpan> toRemove = new HashSet<SnapshotSpan>();
-			foreach (var ar in this.adornmentCache)
-				if (spans.IntersectsWith(new NormalizedSnapshotSpanCollection(ar.Key)))
-					toRemove.Add(ar.Key);
+			try
+			{
+				foreach (var ar in this.adornmentCache)
+					if (spans.IntersectsWith(new NormalizedSnapshotSpanCollection(ar.Key)))
+						toRemove.Add(ar.Key);
+			}
+			catch (ArgumentException)
+			{
+				//What to do? ArgumentException: The collections refer to different snapshots.
+			}
 
 			foreach (var spanDataPair in GetAdornmentData(spans).Distinct(new Comparer()))
 			{
