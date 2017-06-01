@@ -15,7 +15,7 @@ namespace MethodsBigger
 		internal MethodNameBig(IClassificationTypeRegistryService registry)
 		{
 			this.classificationType = registry.GetClassificationType("MethodNameBig");
-			this.methodDeclarationRegex = new Regex("(?:(?:public)|(?:private)|(?:static)|(?:protected))\\s(?:\\S+)\\s(\\S+)\\(", RegexOptions.Compiled);
+			this.methodDeclarationRegex = new Regex("(?:(?:public)|(?:private)|(?:static)|(?:protected)|(?:virtual)|(?:override)|(?:abstract))\\s(?:\\S+)\\s(\\S+)\\(", RegexOptions.Compiled);
 		}
 
 #pragma warning disable 67

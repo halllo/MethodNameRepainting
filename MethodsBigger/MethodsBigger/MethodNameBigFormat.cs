@@ -15,7 +15,7 @@ namespace MethodsBigger
 		public MethodNameBigFormat()
 		{
 			this.DisplayName = "MethodNameBig"; // Human readable version of the name
-			this.FontRenderingSize = 30;
+			this.FontRenderingSize = 25;
 		}
 	}
 }
