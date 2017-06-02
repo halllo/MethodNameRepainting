@@ -10,12 +10,12 @@ namespace MethodsBigger
 	{
 		private readonly IClassificationType classificationType;
 
-		private readonly Regex methodDeclarationRegex;
+		private readonly MethodNameRecognizer methodNameRecognizer;
 
 		internal MethodNameBig(IClassificationTypeRegistryService registry)
 		{
 			this.classificationType = registry.GetClassificationType("MethodNameBig");
-			this.methodDeclarationRegex = new Regex("(?:(?:public)|(?:private)|(?:static)|(?:protected)|(?:virtual)|(?:override)|(?:abstract))\\s(?:\\S+)\\s(\\S+)\\(", RegexOptions.Compiled);
+			this.methodNameRecognizer = new MethodNameRecognizer();
 		}
 
 #pragma warning disable 67
@@ -27,14 +27,13 @@ namespace MethodsBigger
 		public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
 		{
 			var text = span.GetText();
-			var match = this.methodDeclarationRegex.Match(text);
+			var match = this.methodNameRecognizer.Recognize(text);
 
-			if (match.Success)
+			if (match != null)
 			{
-				var methodName = match.Groups[1];
 				var result = new List<ClassificationSpan>()
 				{
-					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start + methodName.Index, methodName.Length)), this.classificationType)
+					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start + match.Index, match.Length)), this.classificationType)
 				};
 
 				return result;

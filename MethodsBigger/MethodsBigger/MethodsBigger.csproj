@@ -48,6 +48,7 @@
     <Compile Include="MethodNameBigClassificationDefinition.cs" />
     <Compile Include="MethodNameBigFormat.cs" />
     <Compile Include="MethodNameBigProvider.cs" />
+    <Compile Include="MethodNameRecognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
