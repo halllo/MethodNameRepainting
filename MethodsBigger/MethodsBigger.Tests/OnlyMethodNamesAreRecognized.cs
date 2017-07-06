@@ -5,7 +5,9 @@ namespace MethodsBigger.Tests
 	[TestClass]
 	public class OnlyMethodNamesAreRecognized
 	{
-		public string MethodName(string text) => new MethodNameRecognizer().Recognize(text)?.Value;
+		private string MethodName(string text) => new MethodNameRecognizer().Recognize(text)?.Name.Value;
+		private string MethodAccessibility(string text) => new MethodNameRecognizer().Recognize(text)?.Accessibilty.Value;
+
 
 		[TestMethod] public void Class() => Assert.AreEqual(null, MethodName("public class Loader<T> where T : class, IModel"));
 		[TestMethod] public void Field() => Assert.AreEqual(null, MethodName("private readonly Loader<T> mLoader;"));
@@ -15,5 +17,9 @@ namespace MethodsBigger.Tests
 		[TestMethod] public void OneGenericParameter() => Assert.AreEqual("StartWith", MethodName("public Loader<T> StartWith<T>(IReadOnlyList<T> objects) where T : class, IModel"));
 		[TestMethod] public void TwoGenericParameters() => Assert.AreEqual("LoadByPseudoId", MethodName("public Loader<T> LoadByPseudoId<T, T2>(Expression<Func<T, object>> primaryKey, params IEnumerable<int>[] idss) where T : class, IModel"));
 		[TestMethod] public void TwoGenericParametersReturned() => Assert.AreEqual("PrepareIds", MethodName("public LoaderWithPreparedIds<T, TAccumulator> PrepareIds<TAccumulator, T2>(TAccumulator seed, Action<TAccumulator, T> idCollector)"));
+
+
+		[TestMethod] public void PrivateMethod() => Assert.AreEqual("private", MethodAccessibility("private void Hallo()"));
+		[TestMethod] public void PublicStaticMethod() => Assert.AreEqual("public", MethodAccessibility("public static void Hallo()"));
 	}
 }

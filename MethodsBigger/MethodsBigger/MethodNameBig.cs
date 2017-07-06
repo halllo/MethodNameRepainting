@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Classification;
 
@@ -8,13 +7,15 @@ namespace MethodsBigger
 {
 	internal class MethodNameBig : IClassifier
 	{
-		private readonly IClassificationType classificationType;
+		private readonly IClassificationType classificationTypeMethodNameBigPrivate;
+		private readonly IClassificationType classificationTypeMethodNameBigPublic;
 
 		private readonly MethodNameRecognizer methodNameRecognizer;
 
 		internal MethodNameBig(IClassificationTypeRegistryService registry)
 		{
-			this.classificationType = registry.GetClassificationType("MethodNameBig");
+			this.classificationTypeMethodNameBigPrivate = registry.GetClassificationType("MethodNameBigPrivate");
+			this.classificationTypeMethodNameBigPublic = registry.GetClassificationType("MethodNameBigPublic");
 			this.methodNameRecognizer = new MethodNameRecognizer();
 		}
 
@@ -31,9 +32,13 @@ namespace MethodsBigger
 
 			if (match != null)
 			{
+				var classicationType = match.Accessibilty.Value == "public"
+					? this.classificationTypeMethodNameBigPublic
+					: this.classificationTypeMethodNameBigPrivate;
+
 				var result = new List<ClassificationSpan>()
 				{
-					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start + match.Index, match.Length)), this.classificationType)
+					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start + match.Name.Index, match.Name.Length)), classicationType)
 				};
 
 				return result;

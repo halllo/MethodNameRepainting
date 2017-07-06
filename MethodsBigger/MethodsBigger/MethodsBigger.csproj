@@ -45,8 +45,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MethodNameBig.cs" />
-    <Compile Include="MethodNameBigClassificationDefinition.cs" />
-    <Compile Include="MethodNameBigFormat.cs" />
+    <Compile Include="ClassificationDefinitions.cs" />
+    <Compile Include="Formats.cs" />
     <Compile Include="MethodNameBigProvider.cs" />
     <Compile Include="MethodNameRecognizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
