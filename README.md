@@ -6,4 +6,6 @@ In this repository I am experimenting with techniques to make method names easie
 * One demonstration utilizes Visual Studio Editor Adornments to insert whitespace into a CamelCase method name.
 * Another demonstration utilizes Visual Studio Editor Classifiers to simply increase the fontsize of a method name of a method definition.
 
-![Screenshot](https://raw.github.com/halllo/MethodNameRepainting/master/MethodsBigger/screenshot.png)
+<br>
+
+![Screenshot](https://raw.github.com/halllo/MethodNameRepainting/master/screenshot.png)
