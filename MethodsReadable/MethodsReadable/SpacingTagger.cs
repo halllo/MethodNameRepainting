@@ -44,7 +44,7 @@ namespace MethodsReadable
 			var caseSwitches = DissectCamelCase(methodName.Value);
 			foreach (var caseSwitch in caseSwitches)
 			{
-				var span = new SnapshotSpan(methodNameStart + caseSwitch + 1, 1);
+				var span = new SnapshotSpan(methodNameStart + caseSwitch, 1);
 				var tag = new SpacingTag(string.Empty);
 				var tagspan = new TagSpan<SpacingTag>(span, tag);
 				yield return tagspan;
@@ -58,9 +58,15 @@ namespace MethodsReadable
 				var current = name[i];
 				var next = name[i + 1];
 
-				if (char.IsLower(current) && char.IsUpper(next))
+				if (
+					(char.IsLower(current) && char.IsUpper(next))
+					||
+					(!char.IsDigit(current) && char.IsDigit(next))
+					||
+					(char.IsDigit(current) && !char.IsDigit(next))
+					)
 				{
-					yield return i;
+					yield return i + 1;
 				}
 			}
 		}
