@@ -12,7 +12,7 @@ namespace MethodsBigger
 
 		private readonly MethodNameRecognizer methodNameRecognizer;
 
-		internal MethodNameBig(IClassificationTypeRegistryService registry)
+		internal MethodNameBig(ITextBuffer buffer, IClassificationTypeRegistryService registry)
 		{
 			this.classificationTypeMethodNameBigPrivate = registry.GetClassificationType("MethodNameBigPrivate");
 			this.classificationTypeMethodNameBigPublic = registry.GetClassificationType("MethodNameBigPublic");
@@ -27,7 +27,8 @@ namespace MethodsBigger
 
 		public IList<ClassificationSpan> GetClassificationSpans(SnapshotSpan span)
 		{
-			var text = span.GetText();
+			var line = span.Snapshot.GetLineFromPosition(span.Start);
+			var text = line.GetText();
 			var match = this.methodNameRecognizer.Recognize(text);
 
 			if (match != null)
@@ -38,7 +39,7 @@ namespace MethodsBigger
 
 				var result = new List<ClassificationSpan>()
 				{
-					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(span.Start + match.Name.Index, match.Name.Length)), classicationType)
+					new ClassificationSpan(new SnapshotSpan(span.Snapshot, new Span(line.Start + match.Name.Index, match.Name.Length)), classicationType)
 				};
 
 				return result;

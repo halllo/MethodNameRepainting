@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
 	<Metadata>
-		<Identity Id="MethodsBigger.Manuel Naujoks.d9058765-9efe-469f-8967-ef27d66ee2d4" Version="1.1" Language="en-US" Publisher="Manuel Naujoks" />
+		<Identity Id="MethodsBigger.Manuel Naujoks.d9058765-9efe-469f-8967-ef27d66ee2d4" Version="1.2" Language="en-US" Publisher="Manuel Naujoks" />
 		<DisplayName>MethodsBigger</DisplayName>
 		<Description xml:space="preserve">Display method definitions a lot bigger so they can be more easly seen.</Description>
 	</Metadata>

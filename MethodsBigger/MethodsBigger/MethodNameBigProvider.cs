@@ -26,7 +26,7 @@ namespace MethodsBigger
 		/// <returns>A classifier for the text buffer, or null if the provider cannot do so in its current state.</returns>
 		public IClassifier GetClassifier(ITextBuffer buffer)
 		{
-			return buffer.Properties.GetOrCreateSingletonProperty<MethodNameBig>(creator: () => new MethodNameBig(this.classificationRegistry));
+			return buffer.Properties.GetOrCreateSingletonProperty<MethodNameBig>(creator: () => new MethodNameBig(buffer, this.classificationRegistry));
 		}
 
 		#endregion
