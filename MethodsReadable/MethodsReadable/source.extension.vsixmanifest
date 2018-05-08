@@ -12,21 +12,21 @@
 //***************************************************************************
 -->
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-	<Metadata>
-		<Identity Id="MethodsReadable.Manuel Naujoks.b0ec7ea6-c31a-4422-aef4-d5104f37d9be" Version="1.1" Language="en-US" Publisher="Manuel Naujoks" />
-		<DisplayName>MethodsReadable</DisplayName>
-		<Description xml:space="preserve">Display method definitions with a little space in between CamelCasing making them easier to read.</Description>
-	</Metadata>
-	<Installation>
-		<InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
-	</Installation>
-	<Dependencies>
-		<Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
-	</Dependencies>
-	<Assets>
-		<Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
-	</Assets>
-	<Prerequisites>
-		<Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
-	</Prerequisites>
+    <Metadata>
+        <Identity Id="MethodsReadable.Manuel Naujoks.b0ec7ea6-c31a-4422-aef4-d5104f37d9be" Version="1.3" Language="en-US" Publisher="Manuel Naujoks" />
+        <DisplayName>MethodsReadable</DisplayName>
+        <Description xml:space="preserve">Display method definitions with a little space in between CamelCasing making them easier to read.</Description>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0]" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.6,)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
 </PackageManifest>
