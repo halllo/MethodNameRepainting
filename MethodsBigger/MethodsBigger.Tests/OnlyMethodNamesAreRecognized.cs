@@ -5,23 +5,29 @@ namespace MethodsBigger.Tests
 	[TestClass]
 	public class OnlyMethodNamesAreRecognized
 	{
-		private string MethodName(string text) => new MethodNameRecognizer().Recognize(text)?.Name.Value;
-		private string MethodAccessibility(string text) => new MethodNameRecognizer().Recognize(text)?.Accessibilty.Value;
+		private (string name, string accessibility) Method(string text)
+		{
+			var recognized = new MethodNameRecognizer().Recognize(" " + text);
+			return (
+				name: recognized?.Name.Value,
+				accessibility: recognized?.Accessibilty.Value
+			);
+		}
 
 
-		[TestMethod] public void Class() => Assert.AreEqual(null, MethodName("public class Loader<T> where T : class, IModel"));
-		[TestMethod] public void Field() => Assert.AreEqual(null, MethodName("private readonly Loader<T> mLoader;"));
-		[TestMethod] public void FieldAssignment() => Assert.AreEqual(null, MethodName("private static readonly ILookup<Type, PropertyInfo> mProperties = typeof(O).GetProperties(BindingFlags.Instance | BindingFlags.Public).ToLookup(pi => pi.PropertyType);"));
+		[TestMethod] public void Class() => Assert.AreEqual(null, Method("public class Loader<T> where T : class, IModel").name);
+		[TestMethod] public void Field() => Assert.AreEqual(null, Method("private readonly Loader<T> mLoader;").name);
+		[TestMethod] public void FieldAssignment() => Assert.AreEqual(null, Method("private static readonly ILookup<Type, PropertyInfo> mProperties = typeof(O).GetProperties(BindingFlags.Instance | BindingFlags.Public).ToLookup(pi => pi.PropertyType);").name);
+		[TestMethod] public void MethodCall() => Assert.AreEqual(null, Method("var scinternal = sc.Internal();").name);
 
-		[TestMethod] public void Void() => Assert.AreEqual("ErzeugeDefault", MethodName("public void ErzeugeDefault(List<string> strings, IThing thing)"));
-		[TestMethod] public void OneGenericParameter() => Assert.AreEqual("StartWith", MethodName("public Loader<T> StartWith<T>(IReadOnlyList<T> objects) where T : class, IModel"));
-		[TestMethod] public void TwoGenericParameters() => Assert.AreEqual("LoadByPseudoId", MethodName("public Loader<T> LoadByPseudoId<T, T2>(Expression<Func<T, object>> primaryKey, params IEnumerable<int>[] idss) where T : class, IModel"));
-		[TestMethod] public void TwoGenericParametersReturned() => Assert.AreEqual("PrepareIds", MethodName("public LoaderWithPreparedIds<T, TAccumulator> PrepareIds<TAccumulator, T2>(TAccumulator seed, Action<TAccumulator, T> idCollector)"));
-		[TestMethod] public void Async() => Assert.AreEqual("AsyncMethod", MethodName("public async Task<int> AsyncMethod()"));
-
-
-		[TestMethod] public void PrivateMethod() => Assert.AreEqual("private", MethodAccessibility("private void Hallo()"));
-		[TestMethod] public void PublicStaticMethod() => Assert.AreEqual("public", MethodAccessibility("public static void Hallo()"));
-		[TestMethod] public void PublicAsynMethod() => Assert.AreEqual("public", MethodAccessibility("public async Task<int> AsyncMethod()"));
+		[TestMethod] public void Void() => Assert.AreEqual(("ErzeugeDefault", "public"), Method("public void ErzeugeDefault(List<string> strings, IThing thing)"));
+		[TestMethod] public void Static() => Assert.AreEqual(("Hallo", "public"), Method("public static void Hallo()"));
+		[TestMethod] public void OneGenericParameter() => Assert.AreEqual(("StartWith", "private"), Method("private Loader<T> StartWith<T>(IReadOnlyList<T> objects) where T : class, IModel"));
+		[TestMethod] public void TwoGenericParameters() => Assert.AreEqual(("LoadByPseudoId", "protected"), Method("protected Loader<T> LoadByPseudoId<T, T2>(Expression<Func<T, object>> primaryKey, params IEnumerable<int>[] idss) where T : class, IModel"));
+		[TestMethod] public void TwoGenericParametersReturned() => Assert.AreEqual("PrepareIds", Method("public LoaderWithPreparedIds<T, TAccumulator> PrepareIds<TAccumulator, T2>(TAccumulator seed, Action<TAccumulator, T> idCollector)").name);
+		[TestMethod] public void Async() => Assert.AreEqual("AsyncMethod", Method("public async Task<int> AsyncMethod()").name);
+		[TestMethod] public void TupleReturn() => Assert.AreEqual("TupleMethod", Method("private async (string name, string accessibility) TupleMethod()").name);
+		[TestMethod] public void TaskTupleReturn() => Assert.AreEqual("TaskTupleMethod", Method("private async Task<(string name, string accessibility)> TaskTupleMethod()").name);
+		[TestMethod] public void TupleInTupleReturn() => Assert.AreEqual("TupleInTupleMethod", Method("private Task<((int i, string s) t1, Task<(f, h)> t2, string t3)> TupleInTupleMethod()").name);
 	}
 }
