@@ -23,10 +23,14 @@ namespace MethodsBigger.Tests
 		[TestMethod] public void Void() => Assert.AreEqual(("ErzeugeDefault", "public"), Method("public void ErzeugeDefault(List<string> strings, IThing thing)"));
 		[TestMethod] public void Static() => Assert.AreEqual(("Hallo", "public"), Method("public static void Hallo()"));
 		[TestMethod] public void OneGenericParameter() => Assert.AreEqual(("StartWith", "private"), Method("private Loader<T> StartWith<T>(IReadOnlyList<T> objects) where T : class, IModel"));
+		[TestMethod] public void OneGenericNullableParameter() => Assert.AreEqual(("StartWith", "private"), Method("private Loader<T> StartWith<T?>(IReadOnlyList<T> objects) where T : class, IModel"));
 		[TestMethod] public void TwoGenericParameters() => Assert.AreEqual(("LoadByPseudoId", "protected"), Method("protected Loader<T> LoadByPseudoId<T, T2>(Expression<Func<T, object>> primaryKey, params IEnumerable<int>[] idss) where T : class, IModel"));
 		[TestMethod] public void TwoGenericParametersReturned() => Assert.AreEqual("PrepareIds", Method("public LoaderWithPreparedIds<T, TAccumulator> PrepareIds<TAccumulator, T2>(TAccumulator seed, Action<TAccumulator, T> idCollector)").name);
 		[TestMethod] public void Async() => Assert.AreEqual("AsyncMethod", Method("public async Task<int> AsyncMethod()").name);
+		[TestMethod] public void NullableReturnType() => Assert.AreEqual("Method", Method("public Guid? Method()").name);
+		[TestMethod] public void AsyncNullableReturnType() => Assert.AreEqual("Method", Method("public async Task<Guid?> Method()").name);
 		[TestMethod] public void TupleReturn() => Assert.AreEqual("TupleMethod", Method("private async (string name, string accessibility) TupleMethod()").name);
+		[TestMethod] public void TupleNullableReturn() => Assert.AreEqual("TupleMethod", Method("private async (string? name, Guid? accessibility) TupleMethod()").name);
 		[TestMethod] public void TaskTupleReturn() => Assert.AreEqual("TaskTupleMethod", Method("private async Task<(string name, string accessibility)> TaskTupleMethod()").name);
 		[TestMethod] public void TupleInTupleReturn() => Assert.AreEqual("TupleInTupleMethod", Method("private Task<((int i, string s) t1, Task<(f, h)> t2, string t3)> TupleInTupleMethod()").name);
 	}
