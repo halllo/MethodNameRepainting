@@ -32,7 +32,7 @@ namespace MethodsReadable
 	internal sealed class SpacingTagger : RegexTagger<SpacingTag>
 	{
 		internal SpacingTagger(ITextBuffer buffer)
-			: base(buffer, new[] { new Regex("\\s((?:public)|(?:private)|(?:protected)|(?:internal))(?:\\s(?:(?:static)|(?:virtual)|(?:override)|(?:abstract)))?(?:\\s(?:async))?\\s(?!class)(?:(?:[a-zA-Z_0-9?<>()]|[a-zA-Z_0-9?<>()]\\s[a-z]|,\\s)+?)\\s(\\S+?)(?:<(?:[a-zA-Z_0-9?<>]|,\\s)+?)?\\(", RegexOptions.Compiled) })
+			: base(buffer, new[] { new Regex("\\s((?:public)|(?:private)|(?:protected)|(?:internal))(?:\\s(?:(?:static)|(?:virtual)|(?:override)|(?:abstract)))?(?:\\s(?:async))?\\s(?!class)(?:(?:[a-zA-Z_0-9?<>\\[\\]()]|[a-zA-Z_0-9?<>\\[\\]()]\\s[a-z]|,\\s)+?)\\s(\\S+?)(?:<(?:[a-zA-Z_0-9?<>\\[\\]]|,\\s)+?)?\\(", RegexOptions.Compiled) })
 		{
 		}
 

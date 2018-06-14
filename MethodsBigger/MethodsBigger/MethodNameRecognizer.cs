@@ -8,7 +8,7 @@ namespace MethodsBigger
 
 		public MethodNameRecognizer()
 		{
-			this.methodDeclarationRegex = new Regex("\\s((?:public)|(?:private)|(?:protected)|(?:internal))(?:\\s(?:(?:static)|(?:virtual)|(?:override)|(?:abstract)))?(?:\\s(?:async))?\\s(?!class)(?:(?:[a-zA-Z_0-9?<>()]|[a-zA-Z_0-9?<>()]\\s[a-z]|,\\s)+?)\\s(\\S+?)(?:<(?:[a-zA-Z_0-9?<>]|,\\s)+?)?\\(", RegexOptions.Compiled);
+			this.methodDeclarationRegex = new Regex("\\s((?:public)|(?:private)|(?:protected)|(?:internal))(?:\\s(?:(?:static)|(?:virtual)|(?:override)|(?:abstract)))?(?:\\s(?:async))?\\s(?!class)(?:(?:[a-zA-Z_0-9?<>\\[\\]()]|[a-zA-Z_0-9?<>\\[\\]()]\\s[a-z]|,\\s)+?)\\s(\\S+?)(?:<(?:[a-zA-Z_0-9?<>\\[\\]]|,\\s)+?)?\\(", RegexOptions.Compiled);
 		}
 
 		public Recognized Recognize(string line)

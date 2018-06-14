@@ -13,7 +13,7 @@
 -->
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="MethodsReadable.Manuel Naujoks.b0ec7ea6-c31a-4422-aef4-d5104f37d9be" Version="1.5" Language="en-US" Publisher="Manuel Naujoks" />
+        <Identity Id="MethodsReadable.Manuel Naujoks.b0ec7ea6-c31a-4422-aef4-d5104f37d9be" Version="1.6" Language="en-US" Publisher="Manuel Naujoks" />
         <DisplayName>MethodsReadable</DisplayName>
         <Description xml:space="preserve">Display method definitions with a little space in between CamelCasing making them easier to read.</Description>
     </Metadata>

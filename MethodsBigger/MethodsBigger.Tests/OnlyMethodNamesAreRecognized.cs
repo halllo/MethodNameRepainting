@@ -28,6 +28,7 @@ namespace MethodsBigger.Tests
 		[TestMethod] public void TwoGenericParametersReturned() => Assert.AreEqual("PrepareIds", Method("public LoaderWithPreparedIds<T, TAccumulator> PrepareIds<TAccumulator, T2>(TAccumulator seed, Action<TAccumulator, T> idCollector)").name);
 		[TestMethod] public void Async() => Assert.AreEqual("AsyncMethod", Method("public async Task<int> AsyncMethod()").name);
 		[TestMethod] public void NullableReturnType() => Assert.AreEqual("Method", Method("public Guid? Method()").name);
+		[TestMethod] public void ArrayReturnType() => Assert.AreEqual("Method", Method("public Guid[] Method()").name);
 		[TestMethod] public void AsyncNullableReturnType() => Assert.AreEqual("Method", Method("public async Task<Guid?> Method()").name);
 		[TestMethod] public void TupleReturn() => Assert.AreEqual("TupleMethod", Method("private async (string name, string accessibility) TupleMethod()").name);
 		[TestMethod] public void TupleNullableReturn() => Assert.AreEqual("TupleMethod", Method("private async (string? name, Guid? accessibility) TupleMethod()").name);
