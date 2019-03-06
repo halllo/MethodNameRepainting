@@ -9,9 +9,6 @@
 //
 //***************************************************************************
 
-// This controls whether the adornments are positioned next to the hex values or instead of them.
-//#define HIDING_TEXT
-
 using System;
 using System.Collections.Generic;
 using MethodsReadable.Support;
